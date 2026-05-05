@@ -1,0 +1,4 @@
+[25-04-2026 23:20:30.511 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - ---------- START delete file in folder ----------
+[25-04-2026 23:20:30.515 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - ---------- END delete file in folder ----------
+[25-04-2026 23:20:30.522 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - debug 111
+[25-04-2026 23:20:30.797 INFO io.github.bonigarcia.wdm.WebDriverManager] - Exporting webdriver.chrome.driver as C:\Users\USER\.cache\selenium\chromedriver\win32\147\chromedriver.exe

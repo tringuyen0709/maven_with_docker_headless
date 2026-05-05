@@ -1,0 +1,5 @@
+[29-04-2026 20:24:30.125 INFO com.nopcommerce.tri.Level_5_Practice_Automation_Page_Factory] - ---------- START delete file in folder ----------
+[29-04-2026 20:24:30.125 INFO com.nopcommerce.tri.Level_5_Practice_Automation_Page_Factory] - ---------- END delete file in folder ----------
+[29-04-2026 20:24:30.149 INFO com.nopcommerce.tri.Level_5_Practice_Automation_Page_Factory] - debug 111
+[29-04-2026 20:24:30.399 INFO io.github.bonigarcia.wdm.WebDriverManager] - Using chromedriver 147.0.7727.117 (resolved driver for Chrome 147)
+[29-04-2026 20:24:30.425 INFO io.github.bonigarcia.wdm.WebDriverManager] - Exporting webdriver.chrome.driver as C:\Users\USER\.cache\selenium\chromedriver\win64\147.0.7727.117\chromedriver.exe

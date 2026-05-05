@@ -1,0 +1,5 @@
+[22-04-2026 14:15:28.975 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - ---------- START delete file in folder ----------
+[22-04-2026 14:15:28.978 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - ---------- END delete file in folder ----------
+[22-04-2026 14:15:28.979 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - debug 111
+[22-04-2026 14:15:29.239 INFO io.github.bonigarcia.wdm.WebDriverManager] - Exporting webdriver.gecko.driver as C:\Users\USER\.cache\selenium\geckodriver\win64\0.33.0\geckodriver.exe
+[22-04-2026 14:15:36.234 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - Post-Condition: Close browser

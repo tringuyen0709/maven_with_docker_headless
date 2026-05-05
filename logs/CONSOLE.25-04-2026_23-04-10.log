@@ -1,0 +1,7 @@
+[25-04-2026 23:04:10.674 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - ---------- START delete file in folder ----------
+[25-04-2026 23:04:10.674 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - ---------- END delete file in folder ----------
+[25-04-2026 23:04:10.674 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - debug 111
+[25-04-2026 23:04:10.959 INFO io.github.bonigarcia.wdm.WebDriverManager] - Reading https://raw.githubusercontent.com/bonigarcia/webdrivermanager/master/docs/mirror/geckodriver to seek geckodriver
+[25-04-2026 23:04:11.545 INFO io.github.bonigarcia.wdm.online.Downloader] - Downloading https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-win64.zip
+[25-04-2026 23:04:12.824 INFO io.github.bonigarcia.wdm.online.Downloader] - Extracting driver from compressed file geckodriver-v0.33.0-win64.zip
+[25-04-2026 23:04:12.861 INFO io.github.bonigarcia.wdm.WebDriverManager] - Exporting webdriver.gecko.driver as C:\Users\USER\.cache\selenium\geckodriver\win64\0.33.0\geckodriver.exe

@@ -1,0 +1,4 @@
+[25-04-2026 22:56:18.908 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - ---------- START delete file in folder ----------
+[25-04-2026 22:56:18.908 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - ---------- END delete file in folder ----------
+[25-04-2026 22:56:18.924 INFO com.nopcommerce.tri.Level_3_Practice_Automation] - debug 111
+[25-04-2026 22:56:19.250 INFO io.github.bonigarcia.wdm.WebDriverManager] - Exporting webdriver.gecko.driver as C:\Users\USER\.cache\selenium\geckodriver\win64\0.33.0\geckodriver.exe

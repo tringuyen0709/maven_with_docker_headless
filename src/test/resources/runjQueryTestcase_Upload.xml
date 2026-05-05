@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="JQueryDataTable" parallel="false">
+<!-- <parameter name= "url" value="https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/" /> -->
+<parameter name= "url" value="https://blueimp.github.io/jQuery-File-Upload/" />
+
+
+<listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        
+        <listener class-name="commons.MethodListener"/>                     
+        <listener class-name="reportConfig.ReportNGListener"/>
+</listeners>
+
+  <test name="Run on FIREFOX">
+  <parameter name= "browser" value="firefox" />
+    <classes>
+<!--       <class name="com.jquery.Level_09_DataTable"/> -->
+      <class name="com.jquery.TC_01_Upload_File"/>
+    </classes>
+  </test> 
+  
+<!--   <test name="Run on CHROME"> -->
+<!--   <parameter name= "browser" value="chrome" /> -->
+<!--     <classes> -->
+<!--       <class name="com.jquery.TC_01_Upload_File"/> -->
+<!--     </classes> -->
+<!--   </test>  -->
+      
+ 
+</suite>
+
+
+

@@ -1,0 +1,6 @@
+[27-04-2026 16:43:54.950 INFO com.nopcommerce.tri.Level_4_Practice_Automation_Cucumber] - ---------- START delete file in folder ----------
+[27-04-2026 16:43:54.953 INFO com.nopcommerce.tri.Level_4_Practice_Automation_Cucumber] - ---------- END delete file in folder ----------
+[27-04-2026 16:43:54.960 INFO com.nopcommerce.tri.Level_4_Practice_Automation_Cucumber] - debug 111
+[27-04-2026 16:43:55.218 INFO io.github.bonigarcia.wdm.WebDriverManager] - Using chromedriver 147.0.7727.117 (resolved driver for Chrome 147)
+[27-04-2026 16:43:55.239 INFO io.github.bonigarcia.wdm.WebDriverManager] - Exporting webdriver.chrome.driver as C:\Users\USER\.cache\selenium\chromedriver\win64\147.0.7727.117\chromedriver.exe
+[27-04-2026 16:44:13.191 INFO com.nopcommerce.tri.Level_4_Practice_Automation_Cucumber] - Post-Condition: Close browser

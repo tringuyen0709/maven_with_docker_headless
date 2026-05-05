@@ -1,0 +1,1 @@
+{"uuid":"2a012a40-21a2-4908-91cf-51eba1ac4eca","name":"Default test","children":[],"befores":[{"name":"deleteAllFilesInReportNGScreenshot","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1766583869642,"stop":1766583869656}],"afters":[],"links":[],"start":1766583869623,"stop":1766583870426}

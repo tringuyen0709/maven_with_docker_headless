@@ -1,0 +1,1 @@
+{"uuid":"578908a1-7528-4e78-bfe7-961269be7403","name":"Run on FIREFOX","children":[],"befores":[{"name":"deleteAllFilesInReportNGScreenshot","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1766581719853,"stop":1766581719865}],"afters":[],"links":[],"start":1766581719830,"stop":1766581725094}
