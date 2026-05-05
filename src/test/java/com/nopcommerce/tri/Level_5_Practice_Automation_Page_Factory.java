@@ -35,8 +35,15 @@ public class Level_5_Practice_Automation_Page_Factory extends BaseTest {
 		log.info("debug 111");
 		
 	    ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");          // chạy không giao diện
-        chromeOptions.addArguments("--disable-gpu");       // thường dùng cho Windows
+//        chromeOptions.addArguments("--headless");          // chạy không giao diện
+//        chromeOptions.addArguments("--disable-gpu");       // thường dùng cho Windows
+//        chromeOptions.addArguments("--window-size=1920,1080");
+        
+        
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--no-sandbox"); // CỰC KỲ QUAN TRỌNG TRONG DOCKER
+        chromeOptions.addArguments("--disable-dev-shm-usage"); // Khắc phục lỗi thiếu bộ nhớ đệm
+        chromeOptions.addArguments("--disable-gpu");
         chromeOptions.addArguments("--window-size=1920,1080");
 
 		
