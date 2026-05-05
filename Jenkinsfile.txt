@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    options {
+        disableConcurrentBuilds(abortPrevious: true)
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Get latest code from repo') {
+            steps {
+                bat 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Run Selenium Tests') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+    }
+
+    post {
+        always { echo 'Pipeline finished' }
+        success { echo 'All tests passed' }
+        failure { echo 'Some tests failed' }
+    }
+}
