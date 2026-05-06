@@ -38,6 +38,17 @@ pipeline {
                 sh 'docker run --rm -v ${WORKSPACE}/target:/app/target selenium-docker-test mvn test'
             }
         }
+		
+		stage('Cleanup Image') {
+            steps {
+                script {
+                    def imageId = sh(script: "docker images -q selenium-docker-test", returnStdout: true).trim()                   
+                    if (imageId) {
+                        sh "docker rmi -f selenium-docker-test"
+                    } 
+                }
+            }
+        }
     }
     post {
         always {
