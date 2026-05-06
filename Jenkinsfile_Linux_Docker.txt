@@ -1,46 +1,50 @@
 pipeline {
     agent any
-    
-    options {
-        disableConcurrentBuilds(abortPrevious: true)
+    options { 
+        disableConcurrentBuilds(abortPrevious: true) 
     }
-
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
+        
+        stage('Cleanup Old Image') {
+            steps {
+                script {
+                    // Kiểm tra xem image có tồn tại không bằng cách lấy ID
+                    // Nếu không có, lệnh này trả về chuỗi rỗng
+                    def imageId = sh(script: "docker images -q selenium-docker-test", returnStdout: true).trim()
+                    
+                    if (imageId) {
+                        echo "Found existing image: ${imageId}. Deleting..."
+                        sh "docker rmi -f selenium-docker-test"
+                    } else {
+                        echo "No existing image found. Skipping cleanup."
+                    }
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
-                // Build image từ Dockerfile trong thư mục hiện tại
                 sh 'docker build -t selenium-docker-test .'
             }
         }
 
         stage('Run Selenium Tests') {
             steps {
-                /* 
-                   LƯU Ý: Phải dùng -v (volume) để map thư mục target từ container ra ngoài Jenkins.
-                   Nếu không có -v, bước 'junit' ở dưới sẽ không tìm thấy file kết quả vì nó nằm trong container đã bị xóa.
-                */
                 sh 'docker run --rm -v ${WORKSPACE}/target:/app/target selenium-docker-test mvn test'
             }
         }
     }
-
     post {
         always {
             echo 'Pipeline finished'
-            // Thu thập kết quả test từ thư mục target đã được mount ra ngoài
             junit '**/target/surefire-reports/*.xml'
         }
-        success {
-            echo 'All tests passed'
-        }
-        failure {
-            echo 'Some tests failed'
-        }
+        success { echo 'All tests passed' }
+        failure { echo 'Some tests failed' }
     }
 }
