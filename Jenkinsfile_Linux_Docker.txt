@@ -34,8 +34,17 @@ pipeline {
         }
 
         stage('Run Selenium Tests') {
-            steps {
-                sh 'docker run --rm -v ${WORKSPACE}/target:/app/target selenium-docker-test mvn test'
+           parallel {
+                stage('Chrome') {
+                    steps {
+                        sh 'docker run --rm -v ${WORKSPACE}/target/chrome:/app/target selenium-docker-test mvn test -Dbrowser=chrome -Dheadless=true'
+                    }
+                }
+                stage('Firefox') {
+                    steps {
+                        sh 'docker run --rm -v ${WORKSPACE}/target/firefox:/app/target selenium-docker-test mvn test -Dbrowser=firefox -Dheadless=true'
+                    }
+                }
             }
         }
 		
