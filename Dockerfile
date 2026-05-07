@@ -31,8 +31,17 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
-# Bước 6: Copy toàn bộ code từ Repo (đã pull về máy Linux) vào Image
+# Bước 6: Copy toàn bộ code từ Repo vào Image
 COPY . .
 
-# Bước 7: Lệnh để chạy test khi Container khởi động
+# Bước 7: Cache ChromeDriver + GeckoDriver vào image lúc build
+RUN mvn exec:java \
+    -Dexec.mainClass="io.github.bonigarcia.wdm.WebDriverManager" \
+    -Dexec.args="chrome" || true
+
+RUN mvn exec:java \
+    -Dexec.mainClass="io.github.bonigarcia.wdm.WebDriverManager" \
+    -Dexec.args="firefox" || true
+
+# Bước 8: Lệnh để chạy test khi Container khởi động
 CMD ["mvn", "test", "-Dbrowser=chrome", "-Dheadless=true"]
