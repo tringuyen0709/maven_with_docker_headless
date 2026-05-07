@@ -7,10 +7,22 @@ RUN apt-get update && apt-get install -y wget gnupg \
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     && apt-get update && apt-get install -y google-chrome-stable \
     && apt-get clean
-	
+
+# In version Chrome
+RUN echo "==========================" \
+    && echo "Chrome version:" \
+    && google-chrome-stable --version \
+    && echo "=========================="
+
 # Bước 3: Cài đặt Firefox
 RUN apt-get update && apt-get install -y firefox-esr \
     && apt-get clean
+
+# In version Firefox
+RUN echo "==========================" \
+    && echo "Firefox version:" \
+    && firefox --version \
+    && echo "=========================="
 
 # Bước 4: Tạo thư mục làm việc trong Container
 WORKDIR /app
@@ -23,5 +35,4 @@ RUN mvn dependency:go-offline
 COPY . .
 
 # Bước 7: Lệnh để chạy test khi Container khởi động
-# Ở đây dùng 'mvn test', bạn có thể thay bằng lệnh chạy TestNG tương ứng
 CMD ["mvn", "test", "-Dbrowser=chrome", "-Dheadless=true"]
