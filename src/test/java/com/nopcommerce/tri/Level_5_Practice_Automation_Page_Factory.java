@@ -37,7 +37,7 @@ public class Level_5_Practice_Automation_Page_Factory extends BaseTest {
 		log.info("debug 111");
 		
 		
-		String browser = System.getProperty("browser", "chrome"); // mặc định chrome
+		String browser = System.getProperty("browser", "chrome"); // mặc định chrome nha
 
 		if (browser.equals("firefox")) {
 		    FirefoxOptions firefoxOptions = new FirefoxOptions();
