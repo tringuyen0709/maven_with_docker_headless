@@ -7,17 +7,21 @@ RUN apt-get update && apt-get install -y wget gnupg \
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     && apt-get update && apt-get install -y google-chrome-stable \
     && apt-get clean
+	
+# Bước 3: Cài đặt Firefox
+RUN apt-get update && apt-get install -y firefox-esr \
+    && apt-get clean
 
-# Bước 3: Tạo thư mục làm việc trong Container
+# Bước 4: Tạo thư mục làm việc trong Container
 WORKDIR /app
 
-# Bước 4: Copy file pom.xml và tải các dependency trước (để cache)
+# Bước 5: Copy file pom.xml và tải các dependency trước (để cache)
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
-# Bước 5: Copy toàn bộ code từ Repo (đã pull về máy Linux) vào Image
+# Bước 6: Copy toàn bộ code từ Repo (đã pull về máy Linux) vào Image
 COPY . .
 
-# Bước 6: Lệnh để chạy test khi Container khởi động
+# Bước 7: Lệnh để chạy test khi Container khởi động
 # Ở đây dùng 'mvn test', bạn có thể thay bằng lệnh chạy TestNG tương ứng
 CMD ["mvn", "test", "-Dbrowser=chrome", "-Dheadless=true"]

@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    
+    options {
+        // Tự động hủy build cũ nếu build mới được trigger
+        disableConcurrentBuilds(abortPrevious: true)
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build & Install') {
+            steps {
+                // Sử dụng 'sh' thay vì 'bat' cho môi trường Linux
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Run Selenium Tests') {
+            steps {
+                // Chạy test Selenium
+                sh 'mvn test'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished'
+            // Thường sẽ thêm bước lưu trữ báo cáo (junit) ở đây
+            junit '**/target/surefire-reports/*.xml'
+        }
+        success {
+            echo 'All tests passed'
+        }
+        failure {
+            echo 'Some tests failed'
+        }
+    }
+}

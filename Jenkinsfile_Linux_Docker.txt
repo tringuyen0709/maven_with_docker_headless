@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    options { 
+        disableConcurrentBuilds(abortPrevious: true) 
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Cleanup Old Image') {
+            steps {
+                script {
+                    // Kiểm tra xem image có tồn tại không bằng cách lấy ID
+                    // Nếu không có, lệnh này trả về chuỗi rỗng
+                    def imageId = sh(script: "docker images -q selenium-docker-test", returnStdout: true).trim()
+                    
+                    if (imageId) {
+                        echo "Found existing image: ${imageId}. Deleting..."
+                        sh "docker rmi -f selenium-docker-test"
+                    } else {
+                        echo "No existing image found. Skipping cleanup."
+                    }
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t selenium-docker-test .'
+            }
+        }
+
+        stage('Run Selenium Tests') {
+            steps {
+                sh 'docker run --rm -v ${WORKSPACE}/target:/app/target selenium-docker-test mvn test'
+            }
+        }
+		
+		stage('Cleanup Image') {
+            steps {
+                script {
+                    def imageId = sh(script: "docker images -q selenium-docker-test", returnStdout: true).trim()                   
+                    if (imageId) {
+                        sh "docker rmi -f selenium-docker-test"
+                    } 
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline finished'
+            junit '**/target/surefire-reports/*.xml'
+        }
+        success { echo 'All tests passed' }
+        failure { echo 'Some tests failed' }
+    }
+}
