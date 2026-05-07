@@ -14,19 +14,19 @@ pipeline {
 
         stage('Get latest code from repo') {
             steps {
-                bat 'mvn clean install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn clean install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
         stage('Run Selenium Tests') {
             steps {
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
     }

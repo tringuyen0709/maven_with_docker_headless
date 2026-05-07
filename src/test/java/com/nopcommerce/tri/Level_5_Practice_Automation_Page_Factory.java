@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -34,24 +36,31 @@ public class Level_5_Practice_Automation_Page_Factory extends BaseTest {
 
 		log.info("debug 111");
 		
-	    ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.addArguments("--headless");          // chạy không giao diện
-//        chromeOptions.addArguments("--disable-gpu");       // thường dùng cho Windows
-//        chromeOptions.addArguments("--window-size=1920,1080");
-        
-        
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--no-sandbox"); // CỰC KỲ QUAN TRỌNG TRONG DOCKER
-        chromeOptions.addArguments("--disable-dev-shm-usage"); // Khắc phục lỗi thiếu bộ nhớ đệm
-        chromeOptions.addArguments("--disable-gpu");
-        chromeOptions.addArguments("--window-size=1920,1080");
-
 		
-	
+		String browser = System.getProperty("browser", "chrome"); // mặc định chrome
 
-		WebDriverManager.chromedriver().setup();
-//		driver = new ChromeDriver();
-		driver = new ChromeDriver(chromeOptions);
+		if (browser.equals("firefox")) {
+		    FirefoxOptions firefoxOptions = new FirefoxOptions();
+		    firefoxOptions.addArguments("--headless");
+		    firefoxOptions.addArguments("--width=1920");
+		    firefoxOptions.addArguments("--height=1080");
+		    firefoxOptions.addArguments("--no-sandbox");
+		    firefoxOptions.addArguments("--disable-dev-shm-usage");
+		    
+		    WebDriverManager.firefoxdriver().setup();
+		    driver = new FirefoxDriver(firefoxOptions);
+		} else {
+		    ChromeOptions chromeOptions = new ChromeOptions();
+		    chromeOptions.addArguments("--headless");
+		    chromeOptions.addArguments("--no-sandbox");
+		    chromeOptions.addArguments("--disable-dev-shm-usage");
+		    chromeOptions.addArguments("--disable-gpu");
+		    chromeOptions.addArguments("--window-size=1920,1080");
+		    
+		    WebDriverManager.chromedriver().setup();
+		    driver = new ChromeDriver(chromeOptions);
+		}
+		
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 
 		PageFactory.initElements(driver, this);
