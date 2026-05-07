@@ -34,18 +34,24 @@ pipeline {
         }
 
         stage('Run Selenium Tests') {
-           parallel {
-                stage('Chrome') {
-                    steps {
-                        sh 'docker run --rm -v ${WORKSPACE}/target/chrome:/app/target selenium-docker-test mvn test -Dbrowser=chrome -Dheadless=true'
-                    }
-                }
-                stage('Firefox') {
-                    steps {
-                        sh 'docker run --rm -v ${WORKSPACE}/target/firefox:/app/target selenium-docker-test mvn test -Dbrowser=firefox -Dheadless=true'
-                    }
-                }
-            }
+			parallel {
+					stage('Chrome') {
+						steps {
+							sh 'docker run --rm \
+								-v ${WORKSPACE}/target/chrome:/app/target \
+								selenium-docker-test \
+								mvn test -Dbrowser=chrome -Dheadless=true'
+						}
+					}
+					stage('Firefox') {
+						steps {
+							sh 'docker run --rm \
+								-v ${WORKSPACE}/target/firefox:/app/target \
+								selenium-docker-test \
+								mvn test -Dbrowser=firefox -Dheadless=true'
+						}
+					}
+				}
         }
 		
 		stage('Cleanup Image') {
@@ -62,7 +68,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline finished'
-            junit '**/target/surefire-reports/*.xml'
+			junit '**/target/**/surefire-reports/*.xml'
         }
         success { echo 'All tests passed' }
         failure { echo 'Some tests failed' }
